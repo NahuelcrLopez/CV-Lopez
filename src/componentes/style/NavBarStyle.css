@@ -29,3 +29,7 @@ ul li {
     margin: auto;
     color: rgb(241, 234, 234);
 }
+.cart{
+    width: auto;
+    height: 400px;
+}
