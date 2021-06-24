@@ -7,6 +7,7 @@ function App() {
     <div>
         <NavBar />
         <ItemListContainer Bienvenida="Bienvenido"/>
+        <img src={logo} alt="" srcset="" />
     </div>
   );
 }

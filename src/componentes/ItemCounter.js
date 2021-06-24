@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function ItemCounter(props) {
-  const [count, setCount] = useState(props.initial);
+export default function ItemCounter({initial,stock,onAdd}) {
+  const [count, setCount] = useState(initial);
   const addCount = () => {
-    if (props.stock > 1 ) {
-      if (count< props.stock){ //setCount se usa para modificar el count
-        setCount(count + 1);
-      }else {
-        alert("no hay stock suficiente");
-    } 
+    if (stock > 1 && count<stock) {
+     //setCount se usa para modificar el count
+      setCount(count + 1);
     }else {
       alert("No hay stock");
     }
@@ -20,12 +17,13 @@ export default function ItemCounter(props) {
       alert("no se puede mas");
     }
   }
+  useEffect(()=>{},[count]);
   return (
     <div>
       <button onClick={addCount}> + </button>
-      {count}
+      <p>{count}</p>
       <button onClick={restar}> - </button>​
-      <button onClick={props.onAdd}> Agregar al carro </button>
+      <button onClick={()=>{onAdd(count)}}> Agregar al carro </button>
     </div>
   );
 }
