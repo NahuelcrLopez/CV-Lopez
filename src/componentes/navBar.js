@@ -2,7 +2,7 @@ import React from "react";
 import Carticon from "./img/cart.svg";
 import CartWidget from "./CartWidget";
 import Nl from './img/NL.jpg';
-import NavBarStyle from "./style/NavBarStyle.css";
+import "./style/NavBarStyle.css";
 export default function NavBar() {
   // const prueba = {
   //   nombre:"benja",

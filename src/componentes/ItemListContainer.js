@@ -1,7 +1,9 @@
 import React,{useEffect,useState} from "react";
 import ItemCounter from "./ItemCounter";
 import ItemList from "./ItemList";
+
 export default function ItemListContainer(props) {
+
   const Data = [
     {
       id: 2,
@@ -38,6 +40,7 @@ export default function ItemListContainer(props) {
       setLoading(false);
     });
   }, []);
+
 
   if (loading) {
     return <div>Loading....</div>;

@@ -4,3 +4,8 @@
     text-decoration: none;
     list-style: none;
 }
+header{
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+}
