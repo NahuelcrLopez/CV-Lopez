@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Archivos de prueba
+/src/componentes/propiedades.js
+/src/componentes/RenderizadoCondicional.js
+/src/componentes/RenderizadoElementos.js
+/src/componentes/Estado.js

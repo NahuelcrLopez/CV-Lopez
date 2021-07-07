@@ -3,6 +3,7 @@ import Carticon from "./img/cart.svg";
 import CartWidget from "./CartWidget";
 import Nl from './img/NL.jpg';
 import "./style/NavBarStyle.css";
+import { Link } from "react-router-dom";
 export default function NavBar() {
   // const prueba = {
   //   nombre:"benja",
@@ -10,11 +11,17 @@ export default function NavBar() {
   // }
   return (
     <header>
-      <img className="logo" src={Nl} alt=""  />
+      <Link to="/">
+        <img className="logo" src={Nl} alt=""  />
+      </Link>
       <a className="nombrePrincipal" href="#">Nahuel Lopez</a>
-      <CartWidget carticon={Carticon} /*nombre="benja" prueba={prueba}*//>
+      <CartWidget carticon={Carticon}/>
       <ul>
-        <li>Inicio</li>
+        <li>
+        <Link to="/Seccion1">
+        <a>Seccion1</a>
+        </Link>
+        </li>
         <li>Categoria</li>
         <li>Contacto</li>
       </ul>

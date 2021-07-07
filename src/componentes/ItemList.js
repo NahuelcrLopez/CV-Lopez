@@ -5,7 +5,13 @@ export default function ItemList(data) {
     return (
         <div>
             {resultData.map((el)=>(
-               <Item name={el.name}/> 
+               <Item
+               src={el.image}
+               name={el.name}
+               precio={el.precio}
+               id={el.id}
+             />
+     
             ))}
         </div>
     )
