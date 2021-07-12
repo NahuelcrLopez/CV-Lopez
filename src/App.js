@@ -1,14 +1,13 @@
 import './App.css';
 import NavBar from './componentes/navBar';
 import ItemListContainer from './componentes/ItemListContainer';
-// import Propiedades from './componentes/Propiedades';
-// import Estado from './componentes/Estado';
-// import RenderizadoCondicional from './componentes/RenderizadoCondicional';
-// import RenderizadoElementos from './componentes/RenderizadoElementos';
 import ItemDetailContainer from './componentes/ItemDetailContainer';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Seccion1 from './componentes/Seccion1';
-
+import Cart from './componentes/Cart'
+// import Hooks from './componentes/Hooks';
+// import Estado from './componentes/Estado';
+// import CicloVida from './componentes/CicloVida';
 function App() {
   return (
     <div>
@@ -24,8 +23,14 @@ function App() {
        <Route exact path="/itemDetail/:id">
           <ItemDetailContainer />
         </Route>
+        <Route  exact path="/cart" component={Cart}/>
        </Switch>
       </BrowserRouter>
+      {/* <Hooks />
+      <hr />
+      <Estado />
+      <hr />
+      <CicloVida /> */}
     </div>
   );
 }

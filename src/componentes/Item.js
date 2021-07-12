@@ -10,7 +10,6 @@ export default function Item(props) {
             <Link to={`/itemDetail/${props.id}`}>
                 <spam>ir al producto</spam>
             </Link>
-
         </div>
     )
 }
