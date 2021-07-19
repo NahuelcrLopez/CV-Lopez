@@ -5,11 +5,16 @@ import ItemDetailContainer from './componentes/ItemDetailContainer';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Seccion1 from './componentes/Seccion1';
 import Cart from './componentes/Cart'
+
+import {CartContext} from "./componentes/CartContext"
+import { useState } from 'react';
 // import Hooks from './componentes/Hooks';
 // import Estado from './componentes/Estado';
 // import CicloVida from './componentes/CicloVida';
 function App() {
+  const [cartList, setCartList]= useState([]);
   return (
+    <CartContext.Provider value={{cartList}}>
     <div>
       <BrowserRouter>
       <NavBar />
@@ -32,6 +37,7 @@ function App() {
       <hr />
       <CicloVida /> */}
     </div>
+    </CartContext.Provider>
   );
 }
 

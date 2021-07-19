@@ -1,29 +1,48 @@
-import React, { useState } from 'react'
-import ItemCounter from './ItemCounter';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import React, { useState, useContext } from "react";
+import ItemCounter from "./ItemCounter";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import { CartContext } from "./CartContext";
 
 export default function ItemDetail(props) {
-    const [quantityToAdd, setQuantityToAdd] = useState(false);
-    return (
-        <div>
-            <p>{props.item.name}</p>
-            <p>{props.item.precio}</p>
-            <img src={props.item.image} />
-            {quantityToAdd === true ? (
-                <Link to="/cart">
-                  <Button type="primary"  variant="outlined" color="primary" className='buttonCount'>Ir al Carrito</Button>
-                </Link>
-              ) : (
-                <ItemCounter
-                  stock={5}
-                  initial={1}
-                  onAdd={(count) => {
-                    setQuantityToAdd(true);
-                    alert(`Se agregaron ${count} items`);
-                  }}
-                />
-              )}
-        </div>
-    )
+  const [quantityToAdd, setQuantityToAdd] = useState(false);
+  const Cart = useContext(CartContext);
+  const objetoCarrito = (id, nombre, quantity, price) => {
+    const carrito = {
+      id:id,
+      nombre:nombre,
+      quantity:quantity,
+      price:price,
+    };
+    Cart.setCartList([...Cart.cartList,carrito])
+  };
+  return (
+    <div>
+      <p>{props.item.name}</p>
+      <p>{props.item.precio}</p>
+      <img src={props.item.image} />
+      {quantityToAdd === true ? (
+        <Link to="/cart">
+          <Button
+            type="primary"
+            variant="outlined"
+            color="primary"
+            className="buttonCount"
+            onClick={()=>{objetoCarrito(props.item.id, props.item.nombre, quantityToAdd, props.item.price)}}
+          >
+            Ir al Carrito
+          </Button>
+        </Link>
+      ) : (
+        <ItemCounter
+          stock={5}
+          initial={1}
+          onAdd={(count) => {
+            setQuantityToAdd(true);
+            alert(`Se agregaron ${count} items`);
+          }}
+        />
+      )}
+    </div>
+  );
 }
