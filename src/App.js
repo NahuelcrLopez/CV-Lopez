@@ -13,8 +13,21 @@ import { useState } from 'react';
 // import CicloVida from './componentes/CicloVida';
 function App() {
   const [cartList, setCartList]= useState([]);
+  const objetoCarrito = (item,quantity) => {
+    inCart(item.id)? console.log("Se encontro el item"):setCartList([...cartList,{item,quantity}])
+  };
+  const inCart = (id) => {
+    return cartList.find(i=>i.item.id===id)
+  }
+function clear () {
+  setCartList([])
+}
+function removeItem(itemId) {
+    const nuevoArray = cartList.filter(i=>i.item.id!==itemId)
+    setCartList(nuevoArray)
+}
   return (
-    <CartContext.Provider value={{cartList}}>
+    <CartContext.Provider value={{cartList,objetoCarrito,clear,removeItem}}>
     <div>
       <BrowserRouter>
       <NavBar />

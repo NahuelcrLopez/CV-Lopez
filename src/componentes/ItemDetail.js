@@ -7,15 +7,7 @@ import { CartContext } from "./CartContext";
 export default function ItemDetail(props) {
   const [quantityToAdd, setQuantityToAdd] = useState(false);
   const Cart = useContext(CartContext);
-  const objetoCarrito = (id, nombre, quantity, price) => {
-    const carrito = {
-      id:id,
-      nombre:nombre,
-      quantity:quantity,
-      price:price,
-    };
-    Cart.setCartList([...Cart.cartList,carrito])
-  };
+  
   return (
     <div>
       <p>{props.item.name}</p>
@@ -28,7 +20,6 @@ export default function ItemDetail(props) {
             variant="outlined"
             color="primary"
             className="buttonCount"
-            onClick={()=>{objetoCarrito(props.item.id, props.item.nombre, quantityToAdd, props.item.price)}}
           >
             Ir al Carrito
           </Button>
@@ -40,6 +31,7 @@ export default function ItemDetail(props) {
           onAdd={(count) => {
             setQuantityToAdd(true);
             alert(`Se agregaron ${count} items`);
+            Cart.objetoCarrito(props.item, count);
           }}
         />
       )}
