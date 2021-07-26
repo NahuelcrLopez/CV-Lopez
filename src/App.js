@@ -5,12 +5,11 @@ import ItemDetailContainer from './componentes/ItemDetailContainer';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Seccion1 from './componentes/Seccion1';
 import Cart from './componentes/Cart'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {CartContext} from "./componentes/CartContext"
 import { useState } from 'react';
-// import Hooks from './componentes/Hooks';
-// import Estado from './componentes/Estado';
-// import CicloVida from './componentes/CicloVida';
+
 function App() {
   const [cartList, setCartList]= useState([]);
   const objetoCarrito = (item,quantity) => {
@@ -44,11 +43,7 @@ function removeItem(itemId) {
         <Route  exact path="/cart" component={Cart}/>
        </Switch>
       </BrowserRouter>
-      {/* <Hooks />
-      <hr />
-      <Estado />
-      <hr />
-      <CicloVida /> */}
+
     </div>
     </CartContext.Provider>
   );

@@ -1,14 +1,22 @@
 import React, {useContext,useState,useEffect} from 'react'
-import CartContext from "../Contexts/CartContext"   
+import CartContext from './CartContext'
 import Table from 'react-bootstrap/Table'
 export default function CartTable(){
 
-  const {cartItems,clearCart,setWidgetNumber,removeItem} = useContext(CartContext)
-  const [precioFinal, setPrecioFinal] = useState(undefined)
+  const {cartItems,widgetNumber,setWidgetNumber,removeItem} = useContext(CartContext)
   const DATA = cartItems
-  const precioTotal = ()=>{
-    setPrecioFinal([...DATA.price])}
+  const [SumTotal, setSumTotal] = useState(undefined);
+  useEffect(() => {
+    const handlesumar = () => {
+      const sumar = DATA.map((data) => (data.price)).reduce((a, b) => {return a + b;
+      }, 0);
+      console.log(typeof cart)
+      setSumTotal(sumar);
+      console.log(SumTotal)
+    }})
+    
     return(
+      
         <Table striped bordered hover>
   <thead>
     <tr>
@@ -20,20 +28,22 @@ export default function CartTable(){
     </tr>
   </thead>
   <tbody>
-  {DATA.map((data) => (
+  {/* {DATA.length === 0?(console.log("no se cargo")) :( 
+  // DATA.map((data) => (
               
         <tr>
         <td>{data.id}</td>
         <td>{data.item}</td>
         <td>{data.count}</td>
         <td>{(data.price)*(data.count)}</td>
-        <td><button onClick={()=>{removeItem(data.id)}} >X</button></td>
+        <td><button onClick={()=>{removeItem(data.id)
+            setWidgetNumber(widgetNumber-(data.count))}} >X</button></td>
         </tr>
        ))
-      }
+      )} */}
     <tr>
         <td>Precio Total</td>
-        <td>{precioTotal}</td>
+        <td>{SumTotal}</td>
         </tr>
   </tbody>
 </Table>

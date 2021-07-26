@@ -24,5 +24,4 @@ yarn-error.log*
 
 # Archivos de prueba
 /Hooks.js
-/Estado.js
-/CicloVida.js
+/RelojHooks.js
