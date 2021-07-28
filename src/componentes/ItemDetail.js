@@ -23,17 +23,20 @@ export default function ItemDetail(props) {
           >
             Ir al Carrito
           </Button>
+          
         </Link>
       ) : (
+        <>
         <ItemCounter
           stock={5}
           initial={1}
           onAdd={(count) => {
             setQuantityToAdd(true);
-            alert(`Se agregaron ${count} items`);
-            Cart.objetoCarrito(props.item, count);
+            
+            Cart.addToCart(props.item, count);
           }}
         />
+      </>
       )}
     </div>
   );

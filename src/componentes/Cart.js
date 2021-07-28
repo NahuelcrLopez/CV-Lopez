@@ -14,7 +14,7 @@ export default function Cart() {
         <div>
                 
                 <button onClick={Cart.clear}>Borrar items</button>
-                {Cart.cartList.map((el)=>(
+                {Cart.cartItems.map((el)=>(
                     <div>
                     <button onClick={()=>Cart.removeItem(el.item.id)}>remover item</button>
                     <CartTable />

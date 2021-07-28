@@ -6,27 +6,10 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Seccion1 from './componentes/Seccion1';
 import Cart from './componentes/Cart'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import {CartContext} from "./componentes/CartContext"
-import { useState } from 'react';
-
+import {CartProvider} from "./componentes/CartContext"
 function App() {
-  const [cartList, setCartList]= useState([]);
-  const objetoCarrito = (item,quantity) => {
-    inCart(item.id)? console.log("Se encontro el item"):setCartList([...cartList,{item,quantity}])
-  };
-  const inCart = (id) => {
-    return cartList.find(i=>i.item.id===id)
-  }
-function clear () {
-  setCartList([])
-}
-function removeItem(itemId) {
-    const nuevoArray = cartList.filter(i=>i.item.id!==itemId)
-    setCartList(nuevoArray)
-}
   return (
-    <CartContext.Provider value={{cartList,objetoCarrito,clear,removeItem}}>
+    <CartProvider>
     <div>
       <BrowserRouter>
       <NavBar />
@@ -43,10 +26,8 @@ function removeItem(itemId) {
         <Route  exact path="/cart" component={Cart}/>
        </Switch>
       </BrowserRouter>
-
     </div>
-    </CartContext.Provider>
+    </CartProvider>
   );
 }
-
 export default App;
