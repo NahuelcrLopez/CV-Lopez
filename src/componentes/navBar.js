@@ -22,7 +22,9 @@ export default function NavBar() {
         <a>Seccion1</a>
         </Link>
         </li>
-        <li>Categoria</li>
+        <Link to="/Frontend">
+        <li>Frontend</li>
+      </Link>
         <li>Contacto</li>
       </ul>
     </header>

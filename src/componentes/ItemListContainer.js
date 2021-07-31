@@ -1,7 +1,8 @@
 import React,{useEffect,useState} from "react";
+import { useParams} from "react-router-dom";
 import ItemCounter from "./ItemCounter";
 import ItemList from "./ItemList";
-
+import { getFireStore } from "../firebase";
 export default function ItemListContainer(props) {
 
   const Data = [
@@ -29,21 +30,38 @@ export default function ItemListContainer(props) {
   ];
   const [dataContent, setDataContent] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const {categoryId} = useParams();
   useEffect(() => {
-    setLoading(true);
-    new Promise((resolve, reject) => {
-      setTimeout(() => resolve(Data), 3000);
-    }).then((dataContentResolve) => {
-      setDataContent(dataContentResolve);
-      // console.log(dataContentResolve);
-      setLoading(false);
-    });
-  }, []);
+    const db = getFireStore();
+    const items = db.collection("items");
+    items
+      .get()
+      .then((querySnapshot) => {
+        setLoading(false);
+        if (querySnapshot.size === 0) {
+          // setIsEmpty(true);
+          console.log("es verdadero")
+        } else {
+          const data = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          if (!categoryId) {
+            setDataContent(data);
+          } else {
+              const filterCategory = data.filter(
+                (item) => item.categoryId === categoryId
+              );
+              setDataContent(filterCategory);
+          }
+        }
+      })
+      .catch((error) => console.log("Firestore error:", error));
+  }, [categoryId]);
 
 
   if (loading) {
-    return <div>Loading....</div>;
+    return <div>Loading...</div>;
   }
 
   return (
