@@ -5,7 +5,6 @@ export default function CartTable() {
   const { cartItems, widgetNumber, setWidgetNumber, removeItem } = useContext(
     CartContext
   );
-  console.log(cartItems)
   const handlesumar = () => {
    return cartItems.reduce((acumulador, item) => {
     return acumulador += item.item.precio * item.count;
@@ -16,7 +15,7 @@ export default function CartTable() {
     <p>No hay productos</p>
   ) : (
     <>
-    {cartItems.map((name)=> <span>{name.item.name}</span> )}
+    {/* {cartItems.map((name)=> <span>{name.item.name}</span> )} */}
     
     <Table striped bordered hover>
       <thead>
@@ -37,6 +36,7 @@ export default function CartTable() {
                 <td>{data.item.precio * data.count}</td>
                 <td>
                   <button
+                    className="btn btn-danger m-1"
                     onClick={() => {
                       removeItem(data.item.id);
                       setWidgetNumber(widgetNumber - data.count);

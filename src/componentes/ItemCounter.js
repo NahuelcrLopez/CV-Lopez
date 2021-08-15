@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-
+import Button from "@material-ui/core/Button";
 export default function ItemCounter({initial,stock,onAdd}) {
+
+
+
   const [count, setCount] = useState(initial);
   const addCount = () => {
     if (stock > 1 && count<stock) {
-     //setCount se usa para modificar el count
       setCount(count + 1);
     }else {
       alert("No hay stock");
@@ -20,10 +22,13 @@ export default function ItemCounter({initial,stock,onAdd}) {
   useEffect(()=>{},[count]);
   return (
     <div>
-      <button onClick={addCount}> + </button>
+      <span className='buttonCount'>
+      <Button onClick={addCount}> + </Button>
+      </span>
       <p>{count}</p>
-      <button onClick={restar}> - </button>​
-      <button onClick={()=>{onAdd(count)}}> Agregar al carro </button>
+      <Button className='buttonCount' onClick={restar}> - </Button>​
+      <Button type="primary" variant="outlined" color="primary" className="buttonCount"onClick={()=>{onAdd(count)}}> Agregar al carro </Button>
+      
     </div>
   );
 }

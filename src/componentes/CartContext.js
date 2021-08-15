@@ -1,15 +1,28 @@
 import { createContext, useState, useEffect } from "react";
-export const CartContext = createContext();
+ export const CartContext = createContext();
 // Pruebas
-export const CartProvider = ({ children }) => {
+ export const CartProvider = ({ children }) => {
   const [quantityToAdd, setQuantityToAdd] = useState(undefined);
   const [isHidden, setIsHidden] = useState(true);
   const [cartItems, setCartItems] = useState([]);
   const [widgetNumber, setWidgetNumber] = useState(0);
   const onAdd = (number) => setQuantityToAdd(number);
-  const isInCart = (id) =>
-    cartItems.filter((currentItem) => id === currentItem.id).length !== 0;
+  const isInCart = (id) => {
+   return cartItems.find((item) => id === item.item.id)
+  };
   const addToCart = (item, count) => {
+    if (isInCart(item.id)){
+      const updateCart = [...cartItems];
+
+      updateCart.forEach((element) => {
+        if (element.item.id === item.id) {
+         return element.count = element.count + count;
+        }
+      });
+      setCartItems(updateCart);
+
+    } else {
+
     const purchase = {
       item: item,
       count: count,
@@ -17,7 +30,8 @@ export const CartProvider = ({ children }) => {
     setCartItems([...cartItems, purchase]);
     setWidgetNumber(purchase.count + widgetNumber);
     alert(`Se agregaron ${count} items`);
-  };
+  }};
+  
   useEffect(() => {
     quantityToAdd ? setIsHidden(false) : setIsHidden(true);
   }, [quantityToAdd]);
